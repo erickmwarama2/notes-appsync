@@ -1,0 +1,19 @@
+service: serverless-appsync-backend
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: prod
+  region: us-east-2
+
+
+functions:
+  hello:
+    handler: handler.hello
+
+resources:
+  Resources:
+    ${file(resources.yml)}
+
