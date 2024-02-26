@@ -76,7 +76,7 @@ cognitoAdminIAMRole:
   Properties:
     RoleName: bookstore-admin-role
     Description: IAM role that admin group users assume
-    AssumedRolePolicyDocument:
+    AssumeRolePolicyDocument:
       Version: "2012-10-17"
       Statement:
         - Effect: Allow
@@ -113,7 +113,7 @@ cognitoUserIAMRole:
   Properties:
     RoleName: bookstore-customer-role
     Description: IAM role that admin group users assume
-    AssumedRolePolicyDocument:
+    AssumeRolePolicyDocument:
       Version: "2012-10-17"
       Statement:
         - Effect: Allow
