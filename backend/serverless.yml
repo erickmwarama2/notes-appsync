@@ -40,5 +40,6 @@ custom:
       - type: AMAZON_DYNAMODB
         name: booksTable
         config:
-          tableName: !Ref booksTable
+          tableName:
+            Ref: booksTable
 
