@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "serverless-appsync-plugin": "^2.7.0"
+    "serverless-appsync-plugin": "1.13.0"
   }
 }
