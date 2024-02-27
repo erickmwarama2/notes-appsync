@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "serverless-appsync-plugin": "1.13.0"
+  "devDependencies": {
+    "serverless-appsync-plugin": "1.11.3"
   }
 }
