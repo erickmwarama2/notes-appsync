@@ -6,7 +6,7 @@ schema {
 type Query {
     getBookById(bookId: ID!): Book!
     listBooks(limit: Int!, nextToken: String): BooksPage!
-    myOrders: OrderItemsPage!
+    myOrders(limit: Int!, nextToken: String): OrderItemsPage!
 }
 
 type Mutation {
