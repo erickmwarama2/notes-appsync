@@ -10,7 +10,7 @@ type Query {
 }
 
 type Mutation {
-    createBook(newBook: BookInput): Book! @aws_auth(cognito_groups: ["Admin"])
+    createBook(newBook: BookInput): Book!
     createOrder(newOrder: OrderInput): Boolean!
 }
 
