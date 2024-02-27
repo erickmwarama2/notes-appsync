@@ -6,11 +6,11 @@ schema {
 type Query {
     getBookById(bookId: ID!): Book!
     listBooks(limit: Int!, nextToken: String): BooksPage!
-    myOrders(): OrderItemsPage!
+    myOrders: OrderItemsPage!
 }
 
 type Mutation {
-    createBook(newBook: BookInput): Book!
+    createBook(newBook: BookInput): Book! @aws_auth(cognito_groups: ["Admin"])
     createOrder(newOrder: OrderInput): Boolean!
 }
 
