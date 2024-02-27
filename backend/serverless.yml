@@ -4,7 +4,7 @@ frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs16.x
   stage: prod
   region: us-east-2
 
@@ -12,10 +12,6 @@ provider:
 functions:
   hello:
     handler: handler.hello
-
-resources:
-  Resources:
-    ${file(resources.yml)}
 
 plugins:
   - serverless-appsync-plugin
@@ -42,3 +38,6 @@ custom:
         config:
           tableName: !Ref booksTable
 
+resources:
+  Resources:
+    ${file(resources.yml)}

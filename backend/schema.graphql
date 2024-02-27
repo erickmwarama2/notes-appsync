@@ -55,6 +55,6 @@ type Book {
     imageUrl: AWSURL
     author: String!
     price: Float!
-    createdAt: AWSDateTime!
-    updatedAt: AWSDateTime!
+    createdAt: AWSDateTime
+    updatedAt: AWSDateTime
 }
