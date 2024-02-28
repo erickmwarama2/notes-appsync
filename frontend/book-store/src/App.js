@@ -1,11 +1,26 @@
 import './App.css';
-import { API } from 'aws-amplify';
-import { getBookById } from './bookQuery';
-// import { withAuthenticator } from '@aws-amplify/ui-react';
-import { useState } from 'react';
+import { API, graphqlOperation } from 'aws-amplify';
+import { getBookById, onCreateBook } from './bookQuery';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+// import "react-toastify/dist/ReactToastify.css";
+
+// toast.configure();
 
 function App() {
   const [book, setBook] = useState(null);
+
+  useEffect(() => {
+    const subscription = API.graphql(graphqlOperation(onCreateBook)).subscribe({
+      next: (result) => {
+        console.log(result);
+        const newBook = result.value.data.onCreateBook;
+        setBook(newBook);
+        toast("New book added!");
+      }
+    })
+  });
 
   const getBook = async () => {
     // const book = await API.graphql(graphqlOperation(getBookById, {id: "b1b61d97-188a-4d91-9f7c-de5660ddc672"}));
@@ -31,7 +46,7 @@ function App() {
 
   return (
     <div>
-      {/* <AmplifySignOut /> */}
+      <AmplifySignOut />
       <section>
         <button onClick={() => getBook()}> Get Book Details </button>
       </section>
@@ -42,4 +57,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);

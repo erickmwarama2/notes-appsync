@@ -8,4 +8,15 @@ query getBookById($id: ID!) {
       description
     }
   }
+`;
+
+export const onCreateBook = `
+subscription MySubscription {
+  onCreateBook {
+    author
+    bookId
+    price
+    title
+  }
+}
 `
