@@ -189,4 +189,4 @@ cognitoUnauthIAMRole:
                     - "types"
                     - "Query"
                     - "fields"
-                    - "*"
+                    - "getBookById"
