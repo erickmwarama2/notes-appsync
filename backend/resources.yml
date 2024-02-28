@@ -181,7 +181,7 @@ cognitoUnauthIAMRole:
           Statement:
             - Effect: Allow
               Action:
-                - appsync:GraphQL
+                - appsync:*
               Resource:
                 - !Join
                   - "/"
