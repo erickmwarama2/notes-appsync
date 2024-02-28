@@ -48,7 +48,7 @@ type BooksPage {
     nextToken: String
 }
 
-type Book @aws_iam {
+type Book {
     bookId: ID!
     title: String!
     description: String
