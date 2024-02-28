@@ -69,7 +69,7 @@ cognitoIdentityPoolRoleAttatchment:
   Properties:
     IdentityPoolId: !Ref cognitoIdentityPool
     Roles:
-      unauthenticated: !GetAtt cognitoUserIAMRole.Arn
+      unauthenticated: !GetAtt cognitoUnauthIAMRole.Arn
 
 
 # cognito user pool client
