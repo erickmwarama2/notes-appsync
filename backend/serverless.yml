@@ -20,6 +20,8 @@ custom:
   appSync:
     name: appSyncBookStoreApi
     authenticationType: AMAZON_COGNITO_USER_POOLS
+    additionalAuthenticationProviders:
+      - authenticationType: AWS_IAM
     userPoolConfig:
       awsRegion: us-east-2
       defaultAction: ALLOW

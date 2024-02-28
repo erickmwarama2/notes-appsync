@@ -53,6 +53,25 @@ cognitoUserPool:
       - email
     UserPoolName: bookStoreUserPool
 
+# cognito identity pool
+cognitoIdentityPool:
+  Type: AWS::Cognito::IdentityPool
+  Properties:
+    AllowUnauthenticatedIdentities: true
+    CognitoIdentityProviders:
+      - ClientId: !Ref cognitoUserPoolClient
+        ProviderName: !GetAtt cognitoUserPool.ProviderName
+    IdentityPoolName: bookStoreIdentityPool
+
+# cognito identity pool role attatchment
+cognitoIdentityPoolRoleAttatchment:
+  Type: AWS::Cognito::IdentityPoolRoleAttachment
+  Properties:
+    IdentityPoolId: !Ref cognitoIdentityPool
+    Roles:
+      unauthenticated: !GetAtt cognitoUserIAMRole.Arn
+
+
 # cognito user pool client
 cognitoUserPoolClient:
   Type: AWS::Cognito::UserPoolClient
@@ -139,3 +158,35 @@ cognitoUserIAMRole:
                 - dynamodb:BatchGetItem
               Resource:
                 - !GetAtt booksTable.Arn
+
+# cognito unauthenticated IAM Role
+cognitoUnauthIAMRole:
+  Type: AWS::IAM::Role
+  Properties:
+    RoleName: bookstore-unauth-role
+    Description: IAM role that unauthenticated users assume
+    AssumeRolePolicyDocument:
+      Version: "2012-10-17"
+      Statement:
+        - Effect: Allow
+          Principal:
+            Federated:
+              - cognito-identity.amazonaws.com
+          Action:
+            - sts:AssumeRoleWithWebIdentity
+    Policies:
+      - PolicyName: bookstore-unauth-user-policy
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - appsync:GraphQL
+              Resource:
+                - !Join
+                  - "/"
+                  - - !Ref GraphQlApi
+                    - "types"
+                    - "Query"
+                    - "fields"
+                    - "getBookById"
