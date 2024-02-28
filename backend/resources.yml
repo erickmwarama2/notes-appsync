@@ -181,7 +181,7 @@ cognitoUnauthIAMRole:
           Statement:
             - Effect: Allow
               Action:
-                - appsync:*
+                - appsync:GraphQL
               Resource:
                 - !Join
                   - "/"
@@ -189,4 +189,4 @@ cognitoUnauthIAMRole:
                     - "types"
                     - "Query"
                     - "fields"
-                    - "getBookById"
+                    - "*"
